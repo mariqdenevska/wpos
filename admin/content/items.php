@@ -1,11 +1,11 @@
 <!-- WallacePOS: Copyright (c) 2014 WallaceIT <micwallace@gmx.com> <https://www.gnu.org/licenses/lgpl.html> -->
 <div class="page-header">
     <h1 style="margin-right: 20px; display: inline-block;">
-        Items
+        Артикули
     </h1>
-    <button onclick="$('#adddialog').dialog('open');" id="addbtn" class="btn btn-primary btn-sm pull-right"><i class="icon-pencil align-top bigger-125"></i>Add</button>
-    <button class="btn btn-success btn-sm pull-right" style="margin-right: 10px;" onclick="exportItems();"><i class="icon-cloud-download align-top bigger-125"></i>Export CSV</button>
-    <button class="btn btn-success btn-sm pull-right" style="margin-right: 10px;" onclick="openImportDialog();"><i class="icon-cloud-upload align-top bigger-125"></i>Import CSV</button>
+    <button onclick="$('#adddialog').dialog('open');" id="addbtn" class="btn btn-primary btn-sm pull-right"><i class="icon-pencil align-top bigger-125"></i>Добави</button>
+    <button class="btn btn-success btn-sm pull-right" style="margin-right: 10px;" onclick="exportItems();"><i class="icon-cloud-download align-top bigger-125"></i>Експортиране CSV</button>
+    <button class="btn btn-success btn-sm pull-right" style="margin-right: 10px;" onclick="openImportDialog();"><i class="icon-cloud-upload align-top bigger-125"></i>Импортиране CSV</button>
 </div><!-- /.page-header -->
 
 <div class="row">
@@ -16,7 +16,7 @@
 <div class="col-xs-12">
 
 <div class="table-header">
-    Manage your business products
+    Управление на продуктите
 </div>
 
 <table id="itemstable" class="table table-striped table-bordered table-hover dt-responsive" style="width:100%;">
@@ -29,14 +29,14 @@
         </label>
     </th>
     <th data-priority="1">ID</th>
-    <th data-priority="2">Name</th>
-    <th data-priority="8">Description</th>
-    <th data-priority="7">Tax</th>
-    <th data-priority="6">Default Qty</th>
-    <th data-priority="4">Price</th>
-    <th data-priority="5">Stockcode</th>
-    <th data-priority="9">Category</th>
-    <th data-priority="10">Supplier</th>
+    <th data-priority="2">Име</th>
+    <th data-priority="8">Описание</th>
+    <th data-priority="7">Данък</th>
+    <th data-priority="6">К-во по подразбиране</th>
+    <th data-priority="4">Цена</th>
+    <th data-priority="5">Код на артикул</th>
+    <th data-priority="9">Категория</th>
+    <th data-priority="10">Доставчик</th>
     <th class="noexport" data-priority="2"></th>
 </tr>
 </thead>
@@ -55,12 +55,12 @@
         <ul class="nav nav-tabs">
             <li class="active">
                 <a href="#itemdetails" data-toggle="tab">
-                    Details
+                    Детайли
                 </a>
             </li>
             <li class="">
                 <a href="#itemoptions" data-toggle="tab">
-                    Options
+                    Опции
                 </a>
             </li>
         </ul>
@@ -68,48 +68,48 @@
             <div class="tab-pane active in" id="itemdetails">
                 <table>
                     <tr>
-                        <td style="text-align: right;"><label>Name:&nbsp;</label></td>
+                        <td style="text-align: right;"><label>Име:&nbsp;</label></td>
                         <td><input id="itemname" type="text"/>
                             <input id="itemid" type="hidden"/></td>
                     </tr>
                     <tr>
-                        <td style="text-align: right;"><label>Alternate Name:&nbsp;</label></td>
+                        <td style="text-align: right;"><label>Алтернативно име:&nbsp;</label></td>
                         <td><input id="itemaltname" type="text"/><br/>
-                            <small>Alternate language name</small>
+                            <small>Име на друг език</small>
                         </td>
                     </tr>
                     <tr>
-                        <td style="text-align: right;"><label>Description:&nbsp;</label></td>
+                        <td style="text-align: right;"><label>Описание:&nbsp;</label></td>
                         <td><input id="itemdesc" type="text"/></td>
                     </tr>
                     <tr>
-                        <td style="text-align: right;"><label>Unit Cost:&nbsp;</label></td>
+                        <td style="text-align: right;"><label>Себестойност:&nbsp;</label></td>
                         <td><input id="itemcost" type="text" value="0"/></td>
                     </tr>
                     <tr>
-                        <td style="text-align: right;"><label>Unit Price:&nbsp;</label></td>
+                        <td style="text-align: right;"><label>Продажна цена:&nbsp;</label></td>
                         <td><input id="itemprice" type="text" value="0"/></td>
                     </tr>
                     <tr>
-                        <td style="text-align: right;"><label>Tax:&nbsp;</label></td>
+                        <td style="text-align: right;"><label>Данък:&nbsp;</label></td>
                         <td><select id="itemtax" class="taxselect">
                             </select></td>
                     </tr>
                     <tr>
-                        <td style="text-align: right;"><label>Default Qty:&nbsp;</label></td>
+                        <td style="text-align: right;"><label>К-во по подразбиране:&nbsp;</label></td>
                         <td><input id="itemqty" type="text" value="1"/></td>
                     </tr>
                     <tr>
-                        <td style="text-align: right;"><label>Stockcode:&nbsp;</label></td>
+                        <td style="text-align: right;"><label>Код на артикул:&nbsp;</label></td>
                         <td><input id="itemcode" type="text"/></td>
                     </tr>
                     <tr>
-                        <td style="text-align: right;"><label>Category:&nbsp;</label></td>
+                        <td style="text-align: right;"><label>Категория:&nbsp;</label></td>
                         <td><select id="itemcategory" class="catselect">
                             </select></td>
                     </tr>
                     <tr>
-                        <td style="text-align: right;"><label>Supplier:&nbsp;</label></td>
+                        <td style="text-align: right;"><label>Доставчик:&nbsp;</label></td>
                         <td><select id="itemsupplier" class="supselect">
                             </select></td>
                     </tr>
@@ -118,27 +118,27 @@
             <div class="tab-pane" id="itemoptions" style="min-height: 280px;">
                 <form class="form-horizontal">
                     <div class="form-group">
-                        <div class="col-sm-4"><label>Item Type:</label></div>
+                        <div class="col-sm-4"><label>Вид Артикул:</label></div>
                         <div class="col-sm-8">
                             <select id="itemtype">
-                                <option value="general">General</option>
-                                <option value="food">Food</option>
-                                <option value="beverage">Beverage</option>
+                                <option value="general">Общи</option>
+                                <option value="food">Храни</option>
+                                <option value="beverage">Напитки</option>
                             </select>
                             <br/><small>Used for kitchen terminal dispatch</small>
                         </div>
                     </div>
                     <div class="space-4"></div>
                     <div class="form-group">
-                        <div class="col-sm-12"><label>Simple Modifiers:</label></div>
+                        <div class="col-sm-12"><label>Добавки:</label></div>
                         <table class="table table-stripped table-responsive" style="margin-bottom: 0; padding-left: 10px; margin-right: 10px;">
                             <thead class="table-header smaller">
                                 <tr>
-                                    <th><small>Qty</small></th>
-                                    <th><small>Min Qty</small></th>
-                                    <th><small>Max Qty</small></th>
-                                    <th><small>Name</small></th>
-                                    <th><small>Price</small></th>
+                                    <th><small>К-во</small></th>
+                                    <th><small>Мин. К-во</small></th>
+                                    <th><small>Макс. К-во</small></th>
+                                    <th><small>Име</small></th>
+                                    <th><small>Цена</small></th>
                                     <th></th>
                                 </tr>
                             </thead>
@@ -146,14 +146,14 @@
 
                             </tbody>
                         </table>
-                        <button style="float: right; margin-right: 8px;" class="btn btn-primary btn-xs" onclick="addItemModifier();">Add</button>
-                        <div class="col-sm-12"><label>Select Modifiers:</label></div>
+                        <button style="float: right; margin-right: 8px;" class="btn btn-primary btn-xs" onclick="addItemModifier();">Добави</button>
+                        <div class="col-sm-12"><label>Избери Добавка:</label></div>
                         <table class="table table-stripped table-responsive" style="margin-bottom: 0; padding-left: 10px; margin-right: 10px;">
                             <tbody id="itemselmodtable">
 
                             </tbody>
                         </table>
-                        <button style="float: right; margin-right: 8px;" class="btn btn-primary btn-xs" onclick="addSelectItemModifier();">Add</button>
+                        <button style="float: right; margin-right: 8px;" class="btn btn-primary btn-xs" onclick="addSelectItemModifier();">Добави</button>
                     </div>
                 </form>
             </div>
@@ -163,52 +163,53 @@
 <div id="adddialog" class="hide">
     <table>
         <tr>
-           <td style="text-align: right;"><label>Name:&nbsp;</label></td>
+           <td style="text-align: right;"><label>Име:&nbsp;</label></td>
            <td><input id="newitemname" type="text"/><br/></td>
         </tr>
         <tr>
-            <td style="text-align: right;"><label>Alternate Name:&nbsp;</label></td>
+            <td style="text-align: right;"><label>Алтернативно име:&nbsp;</label></td>
             <td><input id="newitemaltname" type="text"/><br/>
-                <small>Alternate language name</small>
+                <small>Име на друг език</small>
             </td>
         </tr>
         <tr>
-            <td style="text-align: right;"><label>Description:&nbsp;</label></td>
+            <td style="text-align: right;"><label>Описание:&nbsp;</label></td>
             <td><input id="newitemdesc" type="text"/></td>
         </tr>
         <tr>
-            <td style="text-align: right;"><label>Unit Cost:&nbsp;</label></td>
+            <td style="text-align: right;"><label>Себестойност:&nbsp;</label></td>
             <td><input id="newitemcost" type="text" value="0"/></td>
         </tr>
         <tr>
-            <td style="text-align: right;"><label>Unit Price:&nbsp;</label></td>
+            <td style="text-align: right;"><label>Продажна цена:&nbsp;</label></td>
             <td><input id="newitemprice" type="text" value="0"/></td>
         </tr>
         <tr>
-            <td style="text-align: right;"><label>Tax:&nbsp;</label></td>
+            <td style="text-align: right;"><label>Данък:&nbsp;</label></td>
             <td><select id="newitemtax" class="taxselect">
             </select></td>
         </tr>
         <tr>
-            <td style="text-align: right;"><label>Default Qty:&nbsp;</label></td>
+            <td style="text-align: right;"><label>К-во по подразбиране:&nbsp;</label></td>
             <td><input id="newitemqty" type="text" value="1"/></td>
         </tr>
         <tr>
-            <td style="text-align: right;"><label>Stockcode:&nbsp;</label></td>
+            <td style="text-align: right;"><label>Код на артикул:&nbsp;</label></td>
             <td><input id="newitemcode" type="text"/></td>
         </tr>
         <tr>
-            <td style="text-align: right;"><label>Category:&nbsp;</label></td>
+            <td style="text-align: right;"><label>Категория:&nbsp;</label></td>
             <td><select id="newitemcategory" class="catselect">
                 </select></td>
         </tr>
         <tr>
-            <td style="text-align: right;"><label>Supplier:&nbsp;</label></td>
+            <td style="text-align: right;"><label>Доставчик:&nbsp;</label></td>
             <td><select id="newitemsupplier" class="supselect">
             </select></td>
         </tr>
     </table>
 </div>
+
 
 <!-- page specific plugin scripts -->
 <link rel="stylesheet" href="/admin/assets/js/csv-import/lib/jquery.ezdz.min.css"/>
@@ -324,11 +325,11 @@
                 width: 'auto',
                 modal: true,
                 autoOpen: false,
-                title: "Add Item",
+                title: "Добави Артикул",
                 title_html: true,
                 buttons: [
                     {
-                        html: "<i class='icon-save bigger-110'></i>&nbsp; Save",
+                        html: "<i class='icon-save bigger-110'></i>&nbsp; Запази",
                         "class" : "btn btn-success btn-xs",
                         click: function() {
                             saveItem(true);
@@ -336,7 +337,7 @@
                     }
                     ,
                     {
-                        html: "<i class='icon-remove bigger-110'></i>&nbsp; Cancel",
+                        html: "<i class='icon-remove bigger-110'></i>&nbsp; Отмени",
                         "class" : "btn btn-xs",
                         click: function() {
                             $( this ).dialog( "close" );
@@ -357,7 +358,7 @@
             title_html: true,
             buttons: [
                 {
-                    html: "<i class='icon-save bigger-110'></i>&nbsp; Update",
+                    html: "<i class='icon-save bigger-110'></i>&nbsp; Обнови",
                     "class" : "btn btn-success btn-xs",
                     click: function() {
                         saveItem(false);
@@ -365,7 +366,7 @@
                 }
                 ,
                 {
-                    html: "<i class='icon-remove bigger-110'></i>&nbsp; Cancel",
+                    html: "<i class='icon-remove bigger-110'></i>&nbsp; Отмени",
                     "class" : "btn btn-xs",
                     click: function() {
                         $( this ).dialog( "close" );
@@ -386,14 +387,14 @@
         // populate category & supplier records in select boxes
         var supsel = $(".supselect");
         supsel.html('');
-        supsel.append('<option class="supid-0" value="0">None</option>');
+        supsel.append('<option class="supid-0" value="0">Няма</option>');
         for (key in suppliers){
             supsel.append('<option class="supid-'+suppliers[key].id+'" value="'+suppliers[key].id+'">'+suppliers[key].name+'</option>');
         }
 
         var catsel = $(".catselect");
         catsel.html('');
-        catsel.append('<option class="catid-0" value="0">None</option>');
+        catsel.append('<option class="catid-0" value="0">Няма</option>');
         for (key in categories){
             catsel.append('<option class="catid-'+categories[key].id+'" value="'+categories[key].id+'">'+categories[key].name+'</option>');
         }
@@ -533,7 +534,7 @@
     }
     function removeItem(id){
 
-        var answer = confirm("Are you sure you want to delete this item?");
+        var answer = confirm("Сигурни ли сте, че искате да изтриете този артикул?");
         if (answer){
             // show loader
             WPOS.util.hideLoader();
@@ -548,8 +549,8 @@
 
     function removeSelectedItems(){
         var ids = datatable.api().rows('.selected').data().map(function(row){ return row.id });
-
-        var answer = confirm("Are you sure you want to delete "+ids.length+" selected items?");
+        var answer = confirm("Сигурни ли сте, че искате да изтриете тези "+ids.length+" артикули?");
+        
         if (answer){
             // show loader
             WPOS.util.hideLoader();
@@ -594,21 +595,21 @@
         }
         importdialog = $("body").csvImport({
             jsonFields: {
-                'code': {title:'Stock Code', required: true},
-                'name': {title:'Name', required: true},
-                'description': {title:'Description', required: false, value: ""},
-                'qty': {title:'Default Qty', required: false, value: 1},
-                'cost': {title:'Unit Cost', required: false, value: 0.00},
-                'price': {title:'Unit Price', required: false, value: ""},
-                'tax_name': {title:'Tax Rule Name', required: false, value: ""},
-                'supplier_name': {title:'Supplier Name', required: false, value: ""},
-                'category_name': {title:'Category Name', required: false, value: ""}
+                'code': {title:'Код на артикул', required: true},
+                'name': {title:'Име', required: true},
+                'description': {title:'Описание', required: false, value: ""},
+                'qty': {title:'К-во по подразбиране', required: false, value: 1},
+                'cost': {title:'Себестойност', required: false, value: 0.00},
+                'price': {title:'Продажна цена', required: false, value: ""},
+                'tax_name': {title:'Вид данък', required: false, value: ""},
+                'supplier_name': {title:'Доставчик', required: false, value: ""},
+                'category_name': {title:'Категория', required: false, value: ""}
             },
             csvHasHeader: true,
             importOptions: [
-                {label: "Set unknown tax names to no tax", id:"skip_tax", checked:false},
-                {label: "Create unknown suppliers", id:"add_suppliers", checked:true},
-                {label: "Create unknown categories", id:"add_categories", checked:true}
+                {label: "Без данък", id:"skip_tax", checked:false},
+                {label: "Без доставчик", id:"add_suppliers", checked:true},
+                {label: "Без категория", id:"add_categories", checked:true}
             ],
             // callbacks
             onImport: function(jsondata, options){

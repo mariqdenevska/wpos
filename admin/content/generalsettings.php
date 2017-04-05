@@ -47,8 +47,6 @@
                         <select id="currency_symbol">
                             <option value="$">$ Dollar</option>
                             <option value="€">€ Euro</option>
-                            <option value="£">£ Pound</option>
-                            <option value="¥">¥ Yen/Yuan</option>
                             <option value="лв.">лв. Лева</option>
                         </select>
                         </div>
