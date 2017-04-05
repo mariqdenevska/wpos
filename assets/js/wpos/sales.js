@@ -69,7 +69,7 @@ function WPOSItems() {
     this.addItemFromId = function (id) {
         var item = WPOS.getItemsTable()[id];
         if (item === null) {
-            alert("Item not found");
+            alert("Артикула не е намерен");
         } else {
             // add the item
             addItem(item);
@@ -105,7 +105,7 @@ function WPOSItems() {
 
     this.generateItemGrid = function(categoryId){
         var iboxitems = $("#iboxitems");
-        iboxitems.html('<div style="padding: 5px;"><button class="btn btn-sm btn-primary" onclick="WPOS.items.generateItemGridCategories();"><i class="icon-backward">&nbsp;</i>Categories</button></div>');
+        iboxitems.html('<div style="padding: 5px;"><button class="btn btn-sm btn-primary" onclick="WPOS.items.generateItemGridCategories();"><i class="icon-backward">&nbsp;</i>Категории</button></div>');
         var price;
         var items = [];
         if (categoryId>-1){
@@ -131,7 +131,7 @@ function WPOSItems() {
 
     this.generateItemGridCategories = function(){
         var iboxitems = $("#iboxitems");
-        iboxitems.html('<div class="iboxitem" onclick="WPOS.items.generateItemGrid(-1);"><h5>All Categories</h5><h6>('+Object.keys(WPOS.getItemsTable()).length+' items)</h6></div>');
+        iboxitems.html('<div class="iboxitem" onclick="WPOS.items.generateItemGrid(-1);"><h5>Всички категории</h5><h6>('+Object.keys(WPOS.getItemsTable()).length+' items)</h6></div>');
         var catindex = WPOS.getCategoryIndex();
         var categories = WPOS.getConfigTable().item_categories;
         //console.log(catindex);
@@ -677,7 +677,7 @@ function WPOSSales() {
      *
      */
     this.userAbortSale = function () {
-        var answer = confirm("Are you sure you want to abort this order?");
+        var answer = confirm("Сигурни ли сте, че искате да откажете поръчката?");
         if (answer) {
             clearSalesForm();
         }
@@ -696,7 +696,7 @@ function WPOSSales() {
         $("#itemtable").html('');
         // add a new order row
         if (WPOS.isOrderTerminal()) {
-            $('<tr class="order_row"><td style="background-color:#438EB9; color:#FFF;" colspan="7"><h4 style="text-align: center; margin: 0;">New Order</h4></td></tr>').appendTo("#itemtable");
+            $('<tr class="order_row"><td style="background-color:#438EB9; color:#FFF;" colspan="7"><h4 style="text-align: center; margin: 0;">Нова поръчка</h4></td></tr>').appendTo("#itemtable");
             $("#tablenumber").val(0).prop('readonly', true);
             $("#radio_takeaway").prop('checked', true);
         }
@@ -787,7 +787,7 @@ function WPOSSales() {
             $("#paymentsdiv").dialog('open');
             $("#endsalebtn").prop("disabled", false); // make sure the damn button is active, dunno why but when the page reloads it seems to keep its state.
         } else {
-            alert("Please add some valid items to the sale before proceeding!");
+            alert("Моля, добавете валидни артикули!");
         }
     };
 
@@ -842,7 +842,7 @@ function WPOSSales() {
                             $(".keypad-popup").hide();
                             var cashout =  parseFloat($("#cashoutamount").val()).toFixed(2);
                             if (cashout<0){
-                                alert("Cashout value must be positive or 0");
+                                alert("Плащането трябва да бъде по-голямо от 0");
                                 return;
                             }
                             codialog.dialog('close');
@@ -901,10 +901,10 @@ function WPOSSales() {
         var payrow =  '<tr '+data+'><td>' +
             '<select class="paymethod" onchange="WPOS.sales.onPaymentMethodChange(this);">' +
             '<option value="eftpos" '+(method=='eftpos'?'selected':'')+'>Eftpos</option>' +
-            '<option value="credit" '+(method=='credit'?'selected':'')+'>Credit</option>' +
-            '<option value="cash" '+(method=='cash'?'selected':'')+'>Cash</option>' +
+            '<option value="credit" '+(method=='credit'?'selected':'')+'>Карта</option>' +
+            '<option value="cash" '+(method=='cash'?'selected':'')+'>Кеш</option>' +
             '<option value="cheque" '+(method=='cheque'?'selected':'')+'>Cheque</option>' +
-            '<option value="deposit" '+(method=='deposit'?'selected':'')+'>Deposit</option>' +
+            '<option value="deposit" '+(method=='deposit'?'selected':'')+'>Депозит</option>' +
             exmethod+ '</select>' +
             '<div class="cashvals" '+(method!='cash'?'style="display: none"':'width:150px;')+'>' +
             '<div style="width: 100px; display: inline-block;">Tendered:</div><input onChange="WPOS.sales.updatePaymentChange($(this).parent());" class="paytender numpad" style="width:50px;" type="text" value="'+(method!='cash'?0.00:(tender!=null?tender:value))+'" />' +
@@ -927,7 +927,7 @@ function WPOSSales() {
     function processOrder(){
         var salesobj = getSaleObject();
         var sales_json = JSON.stringify(salesobj);
-        if (sales_json.length > 16384) return alert('Too Many Items'); // depends on database field size for sales.data
+        if (sales_json.length > 16384) return alert('Добавили сте много артикули'); // depends on database field size for sales.data
         if (curref!=null){
             salesobj.ref = curref;
             var cursale = WPOS.trans.getTransactionRecord(curref);
@@ -959,7 +959,7 @@ function WPOSSales() {
     };
 
     this.removeOrder = function(ref){
-        var answer = confirm("Are you sure you want to delete this order?");
+        var answer = confirm("Сигурни ли сте, че искате да изтриете поръчката?");
         if (answer){
             WPOS.util.showLoader();
             WPOS.sendJsonDataAsync("orders/remove", JSON.stringify({ref: ref}), function(result){
@@ -973,7 +973,7 @@ function WPOSSales() {
                     // process the orders
                     WPOS.orders.processOrder(ref, cursale);
                 } else {
-                    alert("Could not delete the order!");
+                    alert("Не може да се изтрие реда!");
                 }
                 WPOS.util.hideLoader();
                 WPOS.trans.showTransactionView();
@@ -990,7 +990,7 @@ function WPOSSales() {
             // if order data exists,
             for (var id in salesobj.orderdata){
                 var orderdata = salesobj.orderdata[id];
-                $('<tr id="order_row_'+id+'" class="order_row" data-data=\''+JSON.stringify(orderdata)+'\'><td style="background-color:#438EB9; color:#FFF;" colspan="7"><h4 style="text-align: center; margin: 0;">Order #'+orderdata.id+'</h4></td></tr>')
+                $('<tr id="order_row_'+id+'" class="order_row" data-data=\''+JSON.stringify(orderdata)+'\'><td style="background-color:#438EB9; color:#FFF;" colspan="7"><h4 style="text-align: center; margin: 0;">Поръчка №'+orderdata.id+'</h4></td></tr>')
                     .appendTo("#itemtable");
             }
             // load items into the table
@@ -1007,7 +1007,7 @@ function WPOSSales() {
             }
             // add a new order row
             if (WPOS.isOrderTerminal())
-                $('<tr class="order_row"><td style="background-color:#438EB9; color:#FFF;" colspan="7"><h4 style="text-align: center; margin: 0;">New Order</h4></td></tr>').appendTo("#itemtable");
+                $('<tr class="order_row"><td style="background-color:#438EB9; color:#FFF;" colspan="7"><h4 style="text-align: center; margin: 0;">Нова поръчка</h4></td></tr>').appendTo("#itemtable");
             // load sale data
             $("#salediscount").val(salesobj.discount);
             $("#salenotes").val(salesobj.salenotes);
@@ -1044,7 +1044,7 @@ function WPOSSales() {
             $("#transactiondiv").dialog('close');
             $("#wrapper").tabs("option", "active", 0);
         } else {
-            alert("Could not find the current record.");
+            alert("Не може да се намери текущия запис.");
         }
     }
 
