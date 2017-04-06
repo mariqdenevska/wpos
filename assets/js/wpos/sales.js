@@ -1053,12 +1053,12 @@ function WPOSSales() {
         var salebtn = $("#endsalebtn");
         salebtn.prop("disabled", true);
         if (!isSaleBalanced()){
-            alert("Please balance the sale before continuing");
+            alert("Моля, изравнете сумите преди да продължите!");
             salebtn.prop("disabled", false);
             return;
         }
         if (!validatePayments()){
-            alert("Only cash-out payments may have a negative amount");
+            alert("Плащането не може да бъде по-малко от 0.");
             salebtn.prop("disabled", false);
             return;
         }
@@ -1129,7 +1129,7 @@ function WPOSSales() {
             if (psetting == "email" && recemailed){
                 return; // receipt has been emailed
             }
-            var answer = confirm("Would you like to print a receipt?");
+            var answer = confirm("Желаете ли да принтирате бележка?");
             if (answer){
                 WPOS.print.printReceipt(salesobj.ref);
             }
@@ -1155,7 +1155,7 @@ function WPOSSales() {
             // ERROR
             if (WPOS.switchToOffline()) { // do not store record if offline mode is not supported.
                 // update status
-                var statusmsg = "The POS is offine and will store sale data locally until a connection becomes available.";
+                var statusmsg = "Програмата е офлайн и ще съхранява данни в устройството, докато връзката стане достъпна.";
                 WPOS.setStatusBar(3, "WPOS is offline ("+WPOS.sales.getOfflineSalesNum()+" offline records)", statusmsg, 0);
             } else {
                 // remove from offline temp
@@ -1525,7 +1525,7 @@ function WPOSSales() {
             if (WPOS.getLocalConfig().recask == "print"){
                 WPOS.print.printReceipt(refundobj.ref);
             } else {
-                var answer = confirm("Would you like to print a receipt?");
+                var answer = confirm("Желаете ли да принтирате бележка?");
                 if (answer){
                     WPOS.print.printReceipt(refundobj.ref);
                 }
@@ -1540,13 +1540,13 @@ function WPOSSales() {
             // add json response to sales records
             addSalesRecord(jsonresponse);
             // reset status Icon
-            WPOS.setStatusBar(1, "WPOS is Online");
+            WPOS.setStatusBar(1, "WPOS е онлайн");
         } else {
             // ERROR
             if (WPOS.switchToOffline()) { // do not store record if offline mode is not supported.
                 addUpdatedOfflineRecord(true, refundobject, "sales/void"); // update records
                 // update status
-                WPOS.setStatusBar(3, "WPOS is offline ("+WPOS.sales.getOfflineSalesNum()+" offline records)");
+                WPOS.setStatusBar(3, "WPOS е офлайн ("+WPOS.sales.getOfflineSalesNum()+" offline records)");
             }
         }
     };
@@ -1602,7 +1602,7 @@ function WPOSSales() {
         if (addOfflineSale(jsondata, action)){
             if (removefromsales) removeSalesRecord(jsondata.ref);
         } else {
-            alert("Failed to update the record in offline storage, the sale has not been updated.");
+            alert("Неуспешно актуализиране на записа при офлайн режим, продажбата не е актуализирана.");
         }
     }
 
